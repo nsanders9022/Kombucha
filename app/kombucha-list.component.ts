@@ -13,6 +13,7 @@ import { Kombucha } from './kombucha.model';
       <p>Pint: {{currentKombucha.pint}}</p>
       <button class="btn btn-primary"(click)="currentKombucha.chooseToEditKombucha = !currentKombucha.chooseToEditKombucha" (click)="editButtonClicked(currentKombucha)">Edit</button>
       <button class="btn btn-success" (click)="sellPint(currentKombucha)">Sell Pint</button>
+      <button *ngIf="currentKombucha.pint <=120"(click)="restock(currentKombucha)" class="btn btn-info">Restock</button>
     </div>
 
     <div *ngIf="currentKombucha.chooseToEditKombucha">
@@ -42,6 +43,10 @@ export class KombuchaListComponent {
 
   sellPint(clickedKombucha) {
     clickedKombucha.pint = clickedKombucha.pint - 1;
+  }
+
+  restock(clickedKombucha) {
+    clickedKombucha.pint = 124;
   }
 
   // sellPintButtonClicked(kombuchaToSell: Kombucha) {
