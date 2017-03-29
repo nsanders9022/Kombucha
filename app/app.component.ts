@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
         <p>Flavor: {{currentKombucha.flavor}}</p>
         <p>Pint: {{currentKombucha.pint}}</p>
         <button (click)="currentKombucha.chooseToEditKombucha = !currentKombucha.chooseToEditKombucha">Edit</button>
+        <button (click)="sellPint(currentKombucha)">Sell Pint</button>
       </div>
 
       <div *ngIf="currentKombucha.chooseToEditKombucha">
@@ -27,6 +28,7 @@ import { Component } from '@angular/core';
         <input [(ngModel)]="currentKombucha.flavor">
         <button (click)="currentKombucha.chooseToEditKombucha = !currentKombucha.chooseToEditKombucha">Done</button>
       </div>
+
     </div>
   </div>
   `
@@ -44,6 +46,10 @@ export class AppComponent {
 
   finishedEditing() {
     this.selectedKombucha=null;
+  }
+
+  sellPint(clickedKombucha) {
+    clickedKombucha.pint = clickedKombucha.pint - 1;
   }
 }
 
