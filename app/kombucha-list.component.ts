@@ -5,7 +5,7 @@ import { Kombucha } from './kombucha.model';
   selector: 'kombucha-list',
   template: `
   <div (click)="editButtonClicked(currentKombucha)" *ngFor="let currentKombucha of childKombuchaList">
-    <h3 (click)="currentKombucha.thisKombucha = !currentKombucha.thisKombucha">{{currentKombucha.name}}</h3>
+    <h3 (click)="currentKombucha.thisKombucha = !currentKombucha.thisKombucha" [class]="priceColor(currentKombucha)">{{currentKombucha.name}}</h3>
     <div *ngIf="currentKombucha.thisKombucha">
       <p>Brand: {{currentKombucha.brand}}</p>
       <p>Price: {{currentKombucha.price}}</p>
@@ -52,6 +52,17 @@ export class KombuchaListComponent {
   // sellPintButtonClicked(kombuchaToSell: Kombucha) {
   //   this.pintSold.emit(kombuchaToSell);
   // }
+
+  priceColor(currentKombucha){
+  if (currentKombucha.price >= 8){
+    return "bg-danger"
+  } else if (currentKombucha.price <= 4){
+    return "bg-success";
+  } else {
+    return "bg-info";
+  }
+}
+
 
 
 }
