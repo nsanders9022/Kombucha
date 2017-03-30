@@ -47,7 +47,7 @@ export class KombuchaListComponent {
   }
 
   pintOnSale(clickedKombucha) {
-    clickedKombucha.price = (clickedKombucha.price * .80).toFixed(2);
+    clickedKombucha.price = (clickedKombucha.price * .80);
   }
 
   restock(clickedKombucha) {
