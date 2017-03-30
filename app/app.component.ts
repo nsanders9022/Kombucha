@@ -8,6 +8,8 @@ import { Kombucha } from './kombucha.model';
     <h1>Kombucha</h1>
 
     <kombucha-list [childKombuchaList]="masterKombuchaList" (clickSender)="editKombucha($event)"></kombucha-list>
+
+    <edit-kombucha [childSelectedKombucha] = "selectedKombucha"(doneButtonClickedSender) = "finishedEditing()"></edit-kombucha>
   </div>
   `
 })

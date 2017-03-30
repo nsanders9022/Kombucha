@@ -16,18 +16,7 @@ import { Kombucha } from './kombucha.model';
       <button *ngIf="currentKombucha.pint <=120"(click)="restock(currentKombucha)" class="btn btn-info">Restock</button>
     </div>
 
-    <div *ngIf="currentKombucha.chooseToEditKombucha">
-      <h3>Edit Kombucha</h3>
-      <label>Enter Kombucha Name</label>
-      <input [(ngModel)]="currentKombucha.name" class="form-control">
-      <label>Enter Kombucha Brand</label>
-      <input [(ngModel)]="currentKombucha.brand" class="form-control">
-      <label>Enter Kombucha Price</label>
-      <input [(ngModel)]="currentKombucha.price" class="form-control">
-      <label>Enter Kombucha Flavor</label>
-      <input [(ngModel)]="currentKombucha.flavor" class="form-control">
-      <button class="btn btn-warning" (click)="currentKombucha.chooseToEditKombucha = !currentKombucha.chooseToEditKombucha">Done</button>
-    </div>
+
   </div>
   `
 })
