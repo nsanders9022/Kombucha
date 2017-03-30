@@ -6,14 +6,14 @@ import { Kombucha } from './kombucha.model';
   template: `
   <h1>New Kombucha</h1>
   <div>
-    <label>Enter Name:</label>
-    <input #newName>
-    <label>Enter Brand:</label>
-    <input #newBrand>
-    <label>Enter Price:</label>
-    <input #newPrice>
-    <label>Enter Flavor:</label>
-    <input #newFlavor>
+    <label>Name:</label>
+    <input #newName class="form-control">
+    <label>Brand:</label>
+    <input #newBrand class="form-control">
+    <label>Price:</label>
+    <input #newPrice class="form-control">
+    <label>Flavor:</label>
+    <input #newFlavor class="form-control">
     <button (click)="submitForm(newName.value, newBrand.value, newPrice.value, newFlavor.value);" class="btn btn-success">Add</button>
   </div>
   `

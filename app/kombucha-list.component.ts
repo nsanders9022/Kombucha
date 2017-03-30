@@ -13,16 +13,19 @@ import { Kombucha } from './kombucha.model';
    </select>
 
    <h3>View our Kombucha Options</h3>
-  <div *ngFor="let currentKombucha of childKombuchaList | flavorness:filterByDesiredFlavor" [class]="priceColor(currentKombucha)" class="kombuchaDivs">
-    <h3 (click)="currentKombucha.thisKombucha = !currentKombucha.thisKombucha" >{{currentKombucha.name}}</h3>
-    <div *ngIf="currentKombucha.thisKombucha">
-      <p>Brand: {{currentKombucha.brand}}</p>
-      <p>Price: {{currentKombucha.price}}</p>
-      <p>Flavor: {{currentKombucha.flavor}}</p>
-      <p>Pint: {{currentKombucha.pint}}</p>
-      <button class="btn btn-primary"(click)="currentKombucha.chooseToEditKombucha = !currentKombucha.chooseToEditKombucha" (click)="editButtonClicked(currentKombucha)">Edit</button>
-      <button class="btn btn-success" (click)="sellPint(currentKombucha)">Sell Pint</button>
-      <button *ngIf="currentKombucha.pint <=120"(click)="restock(currentKombucha)" class="btn btn-info">Restock</button>
+  <div *ngFor="let currentKombucha of childKombuchaList | flavorness:filterByDesiredFlavor">
+    <div class="kombuchaDivs">
+      <h3 (click)="currentKombucha.thisKombucha = !currentKombucha.thisKombucha"  [class]="priceColor(currentKombucha)" >{{currentKombucha.name}}</h3>
+      <div *ngIf="currentKombucha.thisKombucha">
+        <p>Brand: {{currentKombucha.brand}}</p>
+        <p>Price: $ {{(currentKombucha.price).toFixed(2)}}</p>
+        <p>Flavor: {{currentKombucha.flavor}}</p>
+        <p>Pint: {{currentKombucha.pint}}</p>
+        <button class="btn btn-primary"(click)="currentKombucha.chooseToEditKombucha = !currentKombucha.chooseToEditKombucha" (click)="editButtonClicked(currentKombucha)">Edit</button>
+        <button class="btn btn-success" (click)="sellPint(currentKombucha)">Sell Pint</button>
+        <button class="btn btn-danger" (click)="pintOnSale(currentKombucha)">Discount</button>
+        <button *ngIf="currentKombucha.pint <=120"(click)="restock(currentKombucha)" class="btn btn-info">Restock</button>
+      </div>
     </div>
 
   </div>
@@ -32,7 +35,7 @@ import { Kombucha } from './kombucha.model';
 export class KombuchaListComponent {
   @Input() childKombuchaList: Kombucha[];
   @Output() clickSender = new EventEmitter();
-  @Output() pintSold = new EventEmitter();
+
   filterByDesiredFlavor: string = "allFlavors";
 
   editButtonClicked(kombuchaToEdit: Kombucha) {
@@ -41,6 +44,10 @@ export class KombuchaListComponent {
 
   sellPint(clickedKombucha) {
     clickedKombucha.pint = clickedKombucha.pint - 1;
+  }
+
+  pintOnSale(clickedKombucha) {
+    clickedKombucha.price = (clickedKombucha.price * .80).toFixed(2);
   }
 
   restock(clickedKombucha) {
@@ -53,11 +60,11 @@ export class KombuchaListComponent {
 
   priceColor(currentKombucha){
   if (currentKombucha.price >= 8){
-    return "bg-danger"
+    return "text-warning"
   } else if (currentKombucha.price <= 4){
-    return "bg-success";
+    return "text-success";
   } else {
-    return "bg-info";
+    return "text-info";
   }
 }
 
