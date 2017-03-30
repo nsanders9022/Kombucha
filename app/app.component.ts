@@ -9,9 +9,9 @@ import { Kombucha } from './kombucha.model';
 
     <kombucha-list [childKombuchaList]="masterKombuchaList" (clickSender)="editKombucha($event)" ></kombucha-list>
 
-    <edit-kombucha [childSelectedKombucha] = "selectedKombucha"(doneButtonClickedSender) = "finishedEditing()"></edit-kombucha>
+    <edit-kombucha [childSelectedKombucha] = "selectedKombucha"(doneButtonClickedSender) = "finishedEditing()" class="content"></edit-kombucha>
 
-    <new-kombucha (newKombuchaSender)="addKombucha($event)"></new-kombucha>
+    <new-kombucha (newKombuchaSender)="addKombucha($event)" class="content"></new-kombucha>
 
 
 

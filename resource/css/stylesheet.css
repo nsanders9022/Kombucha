@@ -12,7 +12,20 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  position: fixed;
+  margin-top:-900px;
 }
+
+.container {
+  margin-top: 800px;
+  z-index: 300;
+  position:relative;
+  background-color: rgba(255,255,255,0.8);
+  width: 70%;
+  padding-left:
+}
+
+
 
 .title {
   color: white;
@@ -25,9 +38,9 @@ body {
   background-color: #dadbe3;
 }
 
-.image {
+/*.image {
   background-color: white;
-}
+}*/
 /*.image {
   background-image: url();
   min-height: 500px;
