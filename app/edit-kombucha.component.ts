@@ -5,7 +5,7 @@ import { Kombucha } from './kombucha.model';
   selector: 'edit-kombucha',
   template: `
   <div *ngIf="childSelectedKombucha">
-    <h3>Edit Kombucha</h3>
+    <h3>Edit {{childSelectedKombucha.name}}</h3>
     <label>Enter Kombucha Name</label>
     <input [(ngModel)]="childSelectedKombucha.name" class="form-control">
     <label>Enter Kombucha Brand</label>

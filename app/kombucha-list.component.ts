@@ -4,7 +4,13 @@ import { Kombucha } from './kombucha.model';
 @Component({
   selector: 'kombucha-list',
   template: `
-  <div (click)="editButtonClicked(currentKombucha)" *ngFor="let currentKombucha of childKombuchaList">
+  <select (change)="onChange($event.target.value)">
+     <option value="strawberry">Strawberry</option>
+     <option value="ginger">Ginger</option>
+     <option value="lemon">Lemon</option>
+     <option value="allFlavors" selected="selected">All Flavors</option>
+   </select>
+  <div (click)="editButtonClicked(currentKombucha)" *ngFor="let currentKombucha of childKombuchaList | flavorness:filterByDesiredFlavor">
     <h3 (click)="currentKombucha.thisKombucha = !currentKombucha.thisKombucha" [class]="priceColor(currentKombucha)">{{currentKombucha.name}}</h3>
     <div *ngIf="currentKombucha.thisKombucha">
       <p>Brand: {{currentKombucha.brand}}</p>
@@ -15,7 +21,6 @@ import { Kombucha } from './kombucha.model';
       <button class="btn btn-success" (click)="sellPint(currentKombucha)">Sell Pint</button>
       <button *ngIf="currentKombucha.pint <=120"(click)="restock(currentKombucha)" class="btn btn-info">Restock</button>
     </div>
-
 
   </div>
   `
@@ -38,9 +43,9 @@ export class KombuchaListComponent {
     clickedKombucha.pint = 124;
   }
 
-  // sellPintButtonClicked(kombuchaToSell: Kombucha) {
-  //   this.pintSold.emit(kombuchaToSell);
-  // }
+  onChange(optionFromMenu) {
+    this.filterByDesiredFlavor = optionFromMenu;
+  }
 
   priceColor(currentKombucha){
   if (currentKombucha.price >= 8){
@@ -51,7 +56,6 @@ export class KombuchaListComponent {
     return "bg-info";
   }
 }
-
 
 
 }
