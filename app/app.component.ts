@@ -4,8 +4,8 @@ import { Kombucha } from './kombucha.model';
 @Component ({
   selector: 'app-root',
   template: `
-  <div class="container">
-    <h1>Kombucha</h1>
+  <h1 class="jumbotron title">Kombucha</h1>
+  <div class="container image">
 
     <kombucha-list [childKombuchaList]="masterKombuchaList" (clickSender)="editKombucha($event)" ></kombucha-list>
 

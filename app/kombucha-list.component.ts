@@ -4,14 +4,17 @@ import { Kombucha } from './kombucha.model';
 @Component({
   selector: 'kombucha-list',
   template: `
+  <h3>Filter by flavor</h3>
   <select (change)="onChange($event.target.value)">
      <option value="strawberry">Strawberry</option>
      <option value="ginger">Ginger</option>
      <option value="lemon">Lemon</option>
      <option value="allFlavors" selected="selected">All Flavors</option>
    </select>
-  <div *ngFor="let currentKombucha of childKombuchaList | flavorness:filterByDesiredFlavor">
-    <h3 (click)="currentKombucha.thisKombucha = !currentKombucha.thisKombucha" [class]="priceColor(currentKombucha)">{{currentKombucha.name}}</h3>
+
+   <h3>View our Kombucha Options</h3>
+  <div *ngFor="let currentKombucha of childKombuchaList | flavorness:filterByDesiredFlavor" [class]="priceColor(currentKombucha)" class="kombuchaDivs">
+    <h3 (click)="currentKombucha.thisKombucha = !currentKombucha.thisKombucha" >{{currentKombucha.name}}</h3>
     <div *ngIf="currentKombucha.thisKombucha">
       <p>Brand: {{currentKombucha.brand}}</p>
       <p>Price: {{currentKombucha.price}}</p>
