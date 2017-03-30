@@ -10,7 +10,7 @@ import { Kombucha } from './kombucha.model';
      <option value="lemon">Lemon</option>
      <option value="allFlavors" selected="selected">All Flavors</option>
    </select>
-  <div (click)="editButtonClicked(currentKombucha)" *ngFor="let currentKombucha of childKombuchaList | flavorness:filterByDesiredFlavor">
+  <div *ngFor="let currentKombucha of childKombuchaList | flavorness:filterByDesiredFlavor">
     <h3 (click)="currentKombucha.thisKombucha = !currentKombucha.thisKombucha" [class]="priceColor(currentKombucha)">{{currentKombucha.name}}</h3>
     <div *ngIf="currentKombucha.thisKombucha">
       <p>Brand: {{currentKombucha.brand}}</p>
@@ -30,6 +30,7 @@ export class KombuchaListComponent {
   @Input() childKombuchaList: Kombucha[];
   @Output() clickSender = new EventEmitter();
   @Output() pintSold = new EventEmitter();
+  filterByDesiredFlavor: string = "allFlavors";
 
   editButtonClicked(kombuchaToEdit: Kombucha) {
     this.clickSender.emit(kombuchaToEdit);
